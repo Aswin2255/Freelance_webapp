@@ -1,0 +1,14 @@
+{
+    "name": "freelancer",
+    "version": "1.0.0",
+    "description": "# Lessons",
+    "main": "server.js",
+    "scripts": {
+      "build": "cd freelancer_backend && npm install  && cd ../freelancer_frontend && npm install && npm run build",
+      "start": "node freelancer_backend/server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    }
+  
+   
+   
+  }

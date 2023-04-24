@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { Authaction } from "../redux/Authslice";
 import { jobaction } from "../redux/jobslice";
 
-function Createjob({ modal }) {
+function Createjob({ modal,loader }) {
 
   const dispatch = useDispatch();
   
@@ -24,9 +24,10 @@ function Createjob({ modal }) {
   
 
   const { handelChange, values, errors } = Usevalidate();
+
   const handelsubmit = (e) => {
-    console.log("submitedd");
     e.preventDefault();
+    loader(true)
     modal(false);
 
     const obj = { ...values };
@@ -36,15 +37,18 @@ function Createjob({ modal }) {
       addJob("job/createjob", { obj })
         .then(({ data }) => {
           generatesucess("job added sucesfully");
+          setloader(false)
           dispatch(jobaction.getAlljob(data));
         })
         .catch((er) => {
           alert("error ocured log in again");
+         
           dispatch(Authaction.Userlogout());
         });
     } else {
       generateerror("input fields contain errors plz check");
     }
+    loader(false)
   };
 
   return (

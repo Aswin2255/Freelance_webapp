@@ -11,7 +11,7 @@ import { Authaction } from "../redux/Authslice";
 
 const MySwal = withReactContent(Swal);
 
-function Modals({ modal, jobid }) {
+function Modals({ modal, jobid , loader }) {
   const job = useSelector((state) => state.Job.jobs);
   const role = useSelector((state) => state.Auth.role);
   const appliedjobs = useSelector((state) => state.Aplied.appliedjobs);
@@ -37,6 +37,7 @@ function Modals({ modal, jobid }) {
         Object.keys(values).length === 3 &&
         Object.keys(errors).length === 0
       ) {
+        loader(true)
         let newobj = { ...values };
         newobj.jobid = jobid;
         applyJob("job/applyjob", newobj)
@@ -62,6 +63,7 @@ function Modals({ modal, jobid }) {
         navigate("/login");
       });
     }
+    loader(false)
   };
   return (
     <div>

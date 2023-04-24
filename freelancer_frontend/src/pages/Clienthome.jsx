@@ -18,6 +18,7 @@ function Clienthome() {
   //this state is use to set the jobid for current viewed post
   const [jobid, setjobid] = useState("");
   const [createmodal, setcreatemodal] = useState(false);
+  const [loader,setloader] = useState(false)
   const allJobs = useSelector((state) => state.Job.jobs);
   const [postperpage,setpage] = useState(6)
   const [page,currentpage] = useState(1)
@@ -53,7 +54,8 @@ function Clienthome() {
           </h1>
         </div>
       <div className="flex justify-center">
-        <div className=" lg:grid  grid-cols-3 gap-4 ">
+        {
+          loader ? <Loaders/> : <div className=" lg:grid  grid-cols-3 gap-4 ">
           {allJobs ? (
             <>
               {allJobs.slice(0).reverse().slice(startindex,lastindex).map((e) => {
@@ -64,10 +66,11 @@ function Clienthome() {
             <Loaders/>
           )}
         </div>
+        }
       </div>
       <div>
         {modal && <Modals modal={setmodal} jobid={jobid} />}
-        {createmodal && <Createproject modal={setcreatemodal} />}
+        {createmodal && <Createproject modal={setcreatemodal} loader = {setloader} />}
       </div>
       <div className="flex justify-center m-5">
       <Pagination totalpage = {Math.ceil(allJobs.length/postperpage)} currentpage = {page} setcurrentpage = {currentpage}/>

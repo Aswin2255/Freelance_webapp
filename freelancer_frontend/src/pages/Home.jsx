@@ -20,6 +20,7 @@ function Home() {
   const [jobid,setjobid] = useState()
   const [postperpage,setpage] = useState(6)
   const [page,currentpage] = useState(1)
+  const [loader,setloader] = useState(false)
   
   const lastindex = page * postperpage
   const startindex = lastindex - postperpage
@@ -56,7 +57,8 @@ function Home() {
           </h1>
         </div>
       <div className="flex justify-center">
-        <div className=" lg:grid  grid-cols-3 gap-4 ">
+       {
+        loader ? <Loaders/> :  <div className=" lg:grid  grid-cols-3 gap-4 ">
         {allJobs?.length ? (
             <>
               {allJobs.slice(0).reverse(0).slice(startindex,lastindex).map((e) => {
@@ -68,11 +70,12 @@ function Home() {
           )}
          
         </div>
+       }
       </div>
      <div className="flex justify-center m-5">
       <Pagination totalpage = {Math.ceil(allJobs?.length/postperpage)} currentpage = {page} setcurrentpage = {currentpage}/>
      </div>
-      <div>{modal && <Modals modal={setmodal} jobid={jobid}  />}</div>
+      <div>{modal && <Modals modal={setmodal} jobid={jobid} loader = {setloader} />}</div>
     </div>
   );
 }

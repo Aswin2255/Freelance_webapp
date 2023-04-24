@@ -45,7 +45,10 @@ function Login() {
         <h1 className="items-center">Sign in to your account</h1>
       </div>
       {loader ? (
-        <Loaders />
+        <div>
+          <Loaders/>
+        </div>
+       
       ) : (
         <div className="flex justify-center items-center align-middle m-10">
           <form onSubmit={handelsubmit} className="w-full max-w-lg">

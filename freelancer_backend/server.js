@@ -22,7 +22,7 @@ app.use(cookie())
 app.use(cors({credentials:true,origin:"http://localhost:5173"})) 
 
 // in production 
-app.use(express.static('./freelancer_frontend/dist'));
+app.use(express.static('freelancer_frontend/dist'));
 
 //app.use(cors({credentials:true,origin:"http://35.154.223.195"})) 
 

@@ -36,7 +36,7 @@ function Jobrequest() {
         <div className=" m-4 flex flex-col align-middle justify-center items-center   ">
         {allJobs ? (
             <>
-              {allJobs.slice(startindex,lastindex).reverse().map((e) => {
+              {allJobs.slice(0).reverse(0).slice(startindex,lastindex).map((e) => {
                 return <Crads modal={setmodal} jobid={setjobid} details={e} apply={true} />;
               })}
             </>

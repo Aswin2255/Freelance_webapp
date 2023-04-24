@@ -6,8 +6,9 @@ function Usevalidate() {
   const handelChange = (event) => {
     console.log('changed')
     let name = event.target.name;
+    console.log(name)
     let value;
-    if (name === "desc" || name === "message") {
+    if (name === "desc" || name === "message" || name === "title") {
       value = event.target.value;
     } else {
       value = event.target.value.trim();

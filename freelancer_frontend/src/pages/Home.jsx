@@ -29,6 +29,7 @@ function Home() {
   useEffect(() => {
     getAlljobs("job/getalljob")
       .then(({ data }) => {
+        console.log(data)
         dispatch(jobaction.getAlljob(data));
       })
       .catch((er) => {
@@ -56,9 +57,9 @@ function Home() {
         </div>
       <div className="flex justify-center">
         <div className=" lg:grid  grid-cols-3 gap-4 ">
-        {allJobs.length ? (
+        {allJobs?.length ? (
             <>
-              {allJobs.slice(startindex,lastindex).reverse().map((e) => {
+              {allJobs.slice(0).reverse(0).slice(startindex,lastindex).map((e) => {
                 return <Crads modal={setmodal} jobid={setjobid} details={e} />;
               })}
             </>
@@ -69,7 +70,7 @@ function Home() {
         </div>
       </div>
      <div className="flex justify-center m-5">
-      <Pagination totalpage = {Math.ceil(allJobs.length/postperpage)} currentpage = {page} setcurrentpage = {currentpage}/>
+      <Pagination totalpage = {Math.ceil(allJobs?.length/postperpage)} currentpage = {page} setcurrentpage = {currentpage}/>
      </div>
       <div>{modal && <Modals modal={setmodal} jobid={jobid}  />}</div>
     </div>

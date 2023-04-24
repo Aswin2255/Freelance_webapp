@@ -56,7 +56,7 @@ function Clienthome() {
         <div className=" lg:grid  grid-cols-3 gap-4 ">
           {allJobs ? (
             <>
-              {allJobs.slice(startindex,lastindex).reverse().map((e) => {
+              {allJobs.slice(0).reverse().slice(startindex,lastindex).map((e) => {
                 return <Crads modal={setmodal} jobid={setjobid} details={e} />;
               })}
             </>

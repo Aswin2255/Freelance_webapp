@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cookie from 'cookie-parser';
 import cors from 'cors'
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import authrouter from './routes/authroutes.js';
 import jobrouter from './routes/jobroutes.js';
 
@@ -19,12 +19,13 @@ app.use(morgan("common"))
 app.use(cookie())
 //to enable cors
 // in localhost
-//app.use(cors({credentials:true,origin:"http://localhost:5173"})) 
+app.use(cors({credentials:true,origin:"http://localhost:3001"})) 
 
 // in production 
 app.use(express.static('freelancer_frontend/dist'));
 
-app.use(cors({credentials:true,origin:"https://freelancer-webapp.onrender.com"})) 
+
+//app.use(cors({credentials:true,origin:"https://freelancer-webapp.onrender.com"})) 
 
 app.use('/api/auth',authrouter)
 app.use('/api/job',jobrouter)

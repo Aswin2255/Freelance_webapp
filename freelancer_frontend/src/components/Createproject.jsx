@@ -7,10 +7,9 @@ import { useDispatch } from "react-redux";
 import { Authaction } from "../redux/Authslice";
 import { jobaction } from "../redux/jobslice";
 
-function Createjob({ modal,loader }) {
-
+function Createjob({ modal }) {
   const dispatch = useDispatch();
-  
+
   const generateerror = (err) => {
     toast.error(err, {
       position: "top-center",
@@ -21,34 +20,30 @@ function Createjob({ modal,loader }) {
       position: "top-center",
     });
   };
-  
 
   const { handelChange, values, errors } = Usevalidate();
 
   const handelsubmit = (e) => {
     e.preventDefault();
-    loader(true)
+    setloader(true);
     modal(false);
 
     const obj = { ...values };
     delete obj.role;
-   
-    if (Object.keys(obj).length === 3 ) {
+
+    if (Object.keys(obj).length === 3) {
       addJob("job/createjob", { obj })
         .then(({ data }) => {
           generatesucess("job added sucesfully");
-          setloader(false)
           dispatch(jobaction.getAlljob(data));
         })
         .catch((er) => {
           alert("error ocured log in again");
-         
           dispatch(Authaction.Userlogout());
         });
     } else {
       generateerror("input fields contain errors plz check");
     }
-    loader(false)
   };
 
   return (
@@ -132,7 +127,7 @@ function Createjob({ modal,loader }) {
                     <p className="text-red-500 text-xs italic  h-4">
                       {errors.desc && errors.desc}
                     </p>
-                   
+
                     <label className="block mb-2 text-sm font-semibold mt-2 ">
                       budget
                     </label>

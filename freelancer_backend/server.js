@@ -19,10 +19,10 @@ app.use(morgan("common"))
 app.use(cookie())
 //to enable cors
 // in localhost
-//app.use(cors({credentials:true,origin:"http://localhost:3001"})) 
+app.use(cors({credentials:true,origin:"http://localhost:3001"})) 
 
 // in production 
-app.use(express.static('freelancer_frontend/dist'));
+//app.use(express.static('freelancer_frontend/dist'));
 
 
 app.use(cors({credentials:true,origin:"https://freelancer-webapp.onrender.com"})) 

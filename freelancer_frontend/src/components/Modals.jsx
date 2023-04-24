@@ -11,7 +11,7 @@ import { Authaction } from "../redux/Authslice";
 
 const MySwal = withReactContent(Swal);
 
-function Modals({ modal, jobid , loader }) {
+function Modals({ modal, jobid }) {
   const job = useSelector((state) => state.Job.jobs);
   const role = useSelector((state) => state.Auth.role);
   const appliedjobs = useSelector((state) => state.Aplied.appliedjobs);
@@ -37,7 +37,6 @@ function Modals({ modal, jobid , loader }) {
         Object.keys(values).length === 3 &&
         Object.keys(errors).length === 0
       ) {
-        loader(true)
         let newobj = { ...values };
         newobj.jobid = jobid;
         applyJob("job/applyjob", newobj)
@@ -63,7 +62,6 @@ function Modals({ modal, jobid , loader }) {
         navigate("/login");
       });
     }
-    loader(false)
   };
   return (
     <div>
@@ -97,7 +95,7 @@ function Modals({ modal, jobid , loader }) {
                       {currentjob[0].jobdescription}
                     </p>
                   </div>
-                 
+
                   <div>
                     <h3 className="text-xl font-semibold">Budget</h3>
                     <p className=" text-slate-500 text-lg leading-relaxed mt-3">
@@ -141,11 +139,13 @@ function Modals({ modal, jobid , loader }) {
                         {errors.message && errors.message}
                       </p>
                     </div>
-                  ) : role === 'freelancer' ?  (
+                  ) : role === "freelancer" ? (
                     <h1 className="text-green-600 text-center">
                       sucessfully applied.....
                     </h1>
-                  ) : ''}
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

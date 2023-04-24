@@ -95,20 +95,7 @@ function Modals({ modal, jobid }) {
                       {currentjob[0].jobdescription}
                     </p>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold">
-                      Technologies to use
-                    </h3>
-                    <ul className="list-disc  text-slate-500 text-lg leading-relaxed">
-                      {currentjob[0].technologies.map((e) => {
-                        return (
-                          <li key={e._id} className="m-2">
-                            {e.text}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
+                 
                   <div>
                     <h3 className="text-xl font-semibold">Budget</h3>
                     <p className=" text-slate-500 text-lg leading-relaxed mt-3">

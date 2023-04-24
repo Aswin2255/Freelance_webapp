@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { WithContext as ReactTags } from "react-tag-input";
+
 import Usevalidate from "../hooks/Usevalidate";
 import { ToastContainer, toast } from "react-toastify";
 import { addJob } from "../api/api";
@@ -8,14 +8,9 @@ import { Authaction } from "../redux/Authslice";
 import { jobaction } from "../redux/jobslice";
 
 function Createjob({ modal }) {
-  const [tags, setTags] = useState([]);
+
   const dispatch = useDispatch();
-  const addtech = (tag) => {
-    let newtag = tag.text.trim();
-    if (newtag.match(/^[a-zA-Z\s]*$/)) {
-      setTags([...tags, tag]);
-    }
-  };
+  
   const generateerror = (err) => {
     toast.error(err, {
       position: "top-center",
@@ -26,9 +21,7 @@ function Createjob({ modal }) {
       position: "top-center",
     });
   };
-  const handeldelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
-  };
+  
 
   const { handelChange, values, errors } = Usevalidate();
   const handelsubmit = (e) => {
@@ -38,8 +31,8 @@ function Createjob({ modal }) {
 
     const obj = { ...values };
     delete obj.role;
-    obj.technologies = tags;
-    if (Object.keys(obj).length === 4 && tags.length) {
+   
+    if (Object.keys(obj).length === 3 ) {
       addJob("job/createjob", { obj })
         .then(({ data }) => {
           generatesucess("job added sucesfully");
@@ -135,18 +128,7 @@ function Createjob({ modal }) {
                     <p className="text-red-500 text-xs italic  h-4">
                       {errors.desc && errors.desc}
                     </p>
-                    <label className="block mb-2 mt-2 text-sm font-semibold ">
-                      Technologies to use
-                    </label>
-                    <ReactTags
-                      tags={tags}
-                      handleAddition={addtech}
-                      handleDelete={handeldelete}
-                      allowDragDrop={false}
-                      placeholder="type and enter"
-                      inputFieldPosition="bottom"
-                      autocomplete
-                    />
+                   
                     <label className="block mb-2 text-sm font-semibold mt-2 ">
                       budget
                     </label>

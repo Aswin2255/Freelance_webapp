@@ -9,10 +9,7 @@ const Jobschema = new mongoose.Schema({
         require:true
 
     },
-    technologies:{
-        type:Array,
-        require:true
-    },
+   
     budget:{
         type:Number,
         require:true

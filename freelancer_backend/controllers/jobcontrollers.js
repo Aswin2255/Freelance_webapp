@@ -4,12 +4,12 @@ import usermodel from "../models/usermodel.js";
 
 export const addJob = async (req, res) => {
   try {
-    const { title, desc, budget, technologies } = req.body.data.obj;
+    const { title, desc, budget} = req.body.data.obj;
     const newjob = new jobmodel({
       jobtitle: title,
       jobdescription: desc,
       budget: budget,
-      technologies,
+     
       client: req.user,
     });
     const savedjob = await newjob.save();
